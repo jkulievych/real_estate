@@ -1,0 +1,41 @@
+{
+  "features": [
+    "area_m2",
+    "rooms",
+    "layout_garsoniera",
+    "layout_nedecomandat",
+    "layout_nedefinit",
+    "layout_penthouse",
+    "layout_semidecomandat",
+    "has_parking",
+    "has_balcony",
+    "has_elevator",
+    "has_pool",
+    "has_metro",
+    "has_ac",
+    "has_terrace",
+    "has_garden",
+    "has_new_building",
+    "has_own_heating",
+    "desc_length"
+  ],
+  "target": "price_eur",
+  "n_train": 5630,
+  "n_test": 1408,
+  "price_min": 10000,
+  "price_max": 2000000,
+  "area_min": 10,
+  "area_max": 500,
+  "metrics": {
+    "linear": {
+      "r2": 0.4447,
+      "rmse": 115408.93,
+      "mae": 63852.08
+    },
+    "random_forest": {
+      "r2": 0.5626,
+      "rmse": 102423.35,
+      "mae": 50753.79
+    }
+  }
+}
