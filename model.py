@@ -10,7 +10,7 @@ Dane wyjściowe:  models/linear_model.pkl
                  models/rf_model.pkl
                  models/metadata.json
 
-Author: ...
+Author: Yuliia Kuliievych
 License: MIT
 """
 
@@ -22,7 +22,6 @@ import pickle
 from collections import defaultdict
 
 
-# ── Stałe ─────────────────────────────────────────────────────────────────────
 
 INPUT_FILE = "data/processed/imobiliare.csv"
 MODELS_DIR = "models"
@@ -37,14 +36,12 @@ FEATURES = [
 ]
 TARGET = "price_eur"
 
-# Filtry usuwające outliery
 PRICE_MIN = 10_000
 PRICE_MAX = 2_000_000
 AREA_MIN  = 10
 AREA_MAX  = 500
 
 
-# ── Pomocnicze funkcje matematyczne ──────────────────────────────────────────
 
 def mean(values: list) -> float:
     """Zwraca średnią arytmetyczną listy."""
@@ -88,7 +85,6 @@ def mae(y_true: list, y_pred: list) -> float:
     return mean([abs(t - p) for t, p in zip(y_true, y_pred)])
 
 
-# ── Ładowanie i czyszczenie danych ────────────────────────────────────────────
 
 class DataLoader:
     """Klasa do ładowania i czyszczenia danych z pliku CSV."""
@@ -159,7 +155,6 @@ class DataLoader:
         return X_train, X_test, y_train, y_test
 
 
-# ── Regresja liniowa ──────────────────────────────────────────────────────────
 
 class LinearRegressionModel:
     """
@@ -211,7 +206,6 @@ class LinearRegressionModel:
             X: Lista wektorów cech.
             y: Lista wartości docelowych.
         """
-        # Dodaj kolumnę jedynek (intercept)
         X_b = [[1.0] + row for row in X]
         Xt   = self._transpose(X_b)
         XtX  = self._matmul(Xt, X_b)
@@ -252,7 +246,6 @@ class LinearRegressionModel:
         return self.predict([x])[0]
 
 
-# ── Las losowy (uproszczony) ──────────────────────────────────────────────────
 
 class RandomForestModel:
     """
@@ -312,7 +305,6 @@ class RandomForestModel:
         return self.predict([x])[0]
 
 
-# ── Trening i zapis ───────────────────────────────────────────────────────────
 
 class ModelTrainer:
     """Klasa zarządzająca treningiem, ewaluacją i zapisem modeli."""
@@ -328,8 +320,7 @@ class ModelTrainer:
         self.models_dir = models_dir
         os.makedirs(models_dir, exist_ok=True)
 
-    def evaluate(self, model, X_test: list, y_test: list,
-                 name: str) -> dict:
+    def evaluate(self, model: object, X_test: list, y_test: list, name: str) -> dict:
         """
         Ewaluuje model i wypisuje metryki.
 
@@ -354,7 +345,7 @@ class ModelTrainer:
         print(f"  MAE:  {metrics['mae']:,.0f} EUR")
         return metrics
 
-    def save(self, model, filename: str) -> None:
+    def save(self, model: object, filename: str) -> None:
         """
         Zapisuje model do pliku pickle.
 
@@ -375,28 +366,24 @@ class ModelTrainer:
         X_train, X_test, y_train, y_test = loader.train_test_split(X, y)
         print(f"Trening: {len(X_train)} | Test: {len(X_test)}")
 
-        # Statystyki opisowe
         print(f"\nCena — średnia: {mean(y):.0f} EUR | "
               f"std: {std(y):.0f} | "
               f"min: {min(y):.0f} | max: {max(y):.0f}")
 
         metrics = {}
 
-        # Regresja liniowa
         lr = LinearRegressionModel()
         lr.fit(X_train, y_train)
         m_lr = self.evaluate(lr, X_test, y_test, "Regresja liniowa")
         metrics["linear"] = m_lr
         self.save(lr, "linear_model.pkl")
 
-        # Współczynniki
         print("\n  Współczynniki regresji liniowej:")
         pairs = sorted(zip(FEATURES, lr.coefficients),
                        key=lambda x: abs(x[1]), reverse=True)
         for feat, coef in pairs[:10]:
             print(f"    {feat:30}: {coef:+.2f}")
 
-        # Las losowy
         try:
             rf = RandomForestModel()
             rf.fit(X_train, y_train)
@@ -406,7 +393,6 @@ class ModelTrainer:
         except ImportError:
             print("\nsklearn niedostępny — pominięto las losowy.")
 
-        # Metadane
         meta = {
             "features": FEATURES,
             "target": TARGET,

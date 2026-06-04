@@ -1,7 +1,7 @@
 """
 features.py - Ekstrakcja cech ze słownika opisów ogłoszeń nieruchomości.
 
-Author: ...
+Author: Yuliia Kuliievych
 License: MIT
 """
 
@@ -9,7 +9,6 @@ import csv
 import re
 
 
-# Słowniki słów kluczowych dla każdej cechy
 KEYWORDS = {
     "has_parking": r"parcar",
     "has_balcony": r"balcon",

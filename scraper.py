@@ -1,3 +1,7 @@
+"""
+Author: Yuliia Kuliievych
+License: MIT
+"""
 import csv, json, time, random, re, requests, html
 from bs4 import BeautifulSoup
 
@@ -81,17 +85,17 @@ session = requests.Session()
 
 for page in range(1, MAX_PAGES + 1):
     url = BASE_URL if page == 1 else f"{BASE_URL}?page={page}"
-    print(f"Сторінка {page}/{MAX_PAGES} — {url}")
+    print(f"Strona {page}/{MAX_PAGES} — {url}")
     try:
         r = session.get(url, headers=HEADERS, timeout=25)
         r.raise_for_status()
     except Exception as e:
-        print(f"Помилка: {e}"); break
+        print(f"Bład: {e}"); break
     rows, global_id = parse(BeautifulSoup(r.text, "lxml"), global_id)
     if not rows:
-        print("Оголошень не знайдено — зупиняємося."); break
+        print("Nie znalieziono ogłoszeń"); break
     all_rows.extend(rows)
-    print(f"  +{len(rows)} оголошень (всього: {len(all_rows)})")
+    print(f"  +{len(rows)} ogłoszeń (wszystko: {len(all_rows)})")
     if page < MAX_PAGES:
         time.sleep(random.uniform(2, 5))
 
@@ -102,4 +106,4 @@ with open(OUTPUT_FILE, "w", newline="", encoding="utf-8-sig") as f:
     w.writeheader()
     w.writerows(filtered)
 
-print(f"Всього зібрано: {len(all_rows)} | З метражем: {len(filtered)} | Збережено у '{OUTPUT_FILE}'")
+print(f"Zebrano: {len(all_rows)} | Z powierzchnią: {len(filtered)} | Zachowano '{OUTPUT_FILE}'")
