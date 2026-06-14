@@ -76,7 +76,7 @@ This project is honest about what it cannot do:
 
 - **No hyperlocal data.** The model knows the city, not the street. Two apartments 200 metres apart can have very different values based on proximity to a metro station, a park, or a noisy road — and the model cannot see that.
 - **No condition data.** A freshly renovated flat and an unrenovated one in the same building look identical to the model unless explicitly flagged in the listing.
-- **Snapshot in time.** The data was scraped in May 2025. Real estate markets move. A model trained on historical data will gradually drift from current prices.
+- **Snapshot in time.** The data was scraped in April 2026. Real estate markets move. A model trained on historical data will gradually drift from current prices.
 - **Listings ≠ transactions.** The dataset contains asking prices, not sale prices. Actual deals happen at a discount (or occasionally a premium) from the listed price, and that gap varies by city, season, and market conditions.
 
 These aren't failures of the model — they're inherent limits of the data. A good data scientist reports them.
