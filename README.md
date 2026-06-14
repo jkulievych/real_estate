@@ -56,8 +56,8 @@ Key features used by the model:
 
 | Model | MAE (EUR) | RMSE (EUR) | R² |
 |---|---|---|---|
-| OLS (custom) | ~18,400 | ~27,100 | 0.71 |
-| Random Forest | ~11,200 | ~18,900 | 0.84 |
+| OLS (custom) | ~63,400 | ~115,100 | 0.44 |
+| Random Forest | ~50,800 | ~102,400 | 0.56 |
 
 Random Forest is the default predictor in the app. OLS is included for interpretability and coursework requirements.
 
