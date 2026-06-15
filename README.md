@@ -55,7 +55,7 @@ Key features used by the model:
 
 ## Live Dashboard
 
-📊 [Romanian Real Estate Analytics Dashboard]([paste-your-link-here](https://dbc-d249f8e3-c18f.cloud.databricks.com/dashboardsv3/01f168a827c411a0a5cd96623c4f48bf/published?o=7474660256671970))
+📊 [Romanian Real Estate Analytics Dashboard](https://dbc-d249f8e3-c18f.cloud.databricks.com/dashboardsv3/01f168a827c411a0a5cd96623c4f48bf/published?o=7474660256671970)
 
 Built with Databricks — includes:
 - Average price by neighborhood (Top 20 localities)
