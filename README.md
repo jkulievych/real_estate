@@ -20,6 +20,7 @@ You enter basic apartment details. The app instantly returns a **price estimate 
 |---|---|
 | 🕷️ **Web scraper** | Collects listings via JSON-LD structured data — fast and robust against layout changes |
 | 🔬 **EDA notebook** | Exploratory analysis of 7,116 listings across Romanian cities |
+| 📊 **Dashboard** | Databricks analytics dashboard (live) |
 | 🤖 **Two models** | Custom OLS (plain Python, no sklearn) + Random Forest (sklearn) |
 | 📊 **Confidence intervals** | Bootstrap-based uncertainty estimates on every prediction |
 | 🖥️ **GUI app** | Flet desktop app with Lottie animations and prediction history |
@@ -49,6 +50,19 @@ Key features used by the model:
 | `has_parking` | Parking space included |
 | `has_balcony` | Balcony present |
 | `has_storage` | Storage room included |
+
+---
+
+## Live Dashboard
+
+📊 [Romanian Real Estate Analytics Dashboard]([paste-your-link-here](https://dbc-d249f8e3-c18f.cloud.databricks.com/dashboardsv3/01f168a827c411a0a5cd96623c4f48bf/published?o=7474660256671970))
+
+Built with Databricks — includes:
+- Average price by neighborhood (Top 20 localities)
+- Price distribution across 7,011 listings
+- Average price by number of rooms
+- Price vs area scatter plot
+- Price premium by amenity (parking, pool, terrace, etc.)
 
 ---
 
